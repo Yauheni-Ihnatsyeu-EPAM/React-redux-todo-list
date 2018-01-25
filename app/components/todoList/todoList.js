@@ -32,15 +32,16 @@ export default class TodoList extends React.Component {
     render() {
         return (
             <Table>
-                <tr>{this.state.categoriesList}</tr>
+                <tbody>
+                {this.state.categoriesList}
+                </tbody>
             </Table>
         )
     }
 }
 
-styled(TodoList)`
-width: 30%; 
-background-color:red;
 
-`;
-const Table = styled.table `border: 1px solid black; display: inline-block;`;
+const Table = styled.table `border: 1px solid black;
+width: 70%;
+display:inline-block;
+ `;

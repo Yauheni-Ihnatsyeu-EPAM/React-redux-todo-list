@@ -4,7 +4,7 @@
 
 import React from 'react';
 
-export default class SearchInput extends React.Component {
+export default class AddItem extends React.Component {
     // getInitialState() {     return {value: 'Enter category to search'}; }
     constructor(props) {
         super(props);
@@ -27,7 +27,7 @@ export default class SearchInput extends React.Component {
             <form onSubmit={this.handleSubmit}>
             
             <input type="checkbox" id="showDone" name="subscribe"/>
-            <label>Show done</label>
+            <label for="showDone">Show done</label>
                 <label>
                     Search:
                     <input type="text" value={this.state.value} onChange={this.handleChange}/>

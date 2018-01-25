@@ -33,15 +33,16 @@ export default class Categories extends React.Component {
     render() {
         return (
             <Table>
-                <tr>{this.state.categoriesList}</tr>
+                <tbody>
+                    {this.state.categoriesList}
+                </tbody>
             </Table>
         )
     }
 }
 
-styled(Categories)`
+const Table = styled.table `
+border: 1px solid black;
+display: inline-block;
 width: 30%; 
-background-color:red;
-display: inline;
 `;
-const Table = styled.table `border: 1px solid black;display: inline-block;`;

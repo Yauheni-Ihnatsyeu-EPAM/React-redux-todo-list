@@ -20,8 +20,16 @@ import messages from './messages';
 import SearchInput from '../../components/searchInput/searchInput';
 import Categories from '../../components/categories/categories';
 import TodoList from '../../components/todoList/todoList';
+import AddItem from '../../components/addItem/additem';
+//
+import { createStore } from 'redux';
+import todoApp from '../../components/redusers';
+
+
+let store = createStore(todoApp);
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
   render() {
     return (
       <div>
@@ -30,14 +38,16 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     Загружено на <span id="value">25</span>%
   </Progress>
         
-      {/* Add category input */}
+      {/* <AddItem text='Enter category title'/> */}
         <Categories categories={['alo', 'bla', 'oro']}/>
-        {/* Add to-do item input*/}
+        {/* <AddItem text='Text input with button'/> */}
         <TodoList categories={['alo', 'bla', 'oro']}/>    
       </div>
     );
   }
 }
 
+styled(Categories)`width:30%;`;
+styled(TodoList)`width:70%;`;
 
-const Progress = styled.progress `border: 1px solid black;display: block;`;
+const Progress = styled.progress `display: block;`;

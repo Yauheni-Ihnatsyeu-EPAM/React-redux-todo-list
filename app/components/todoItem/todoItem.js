@@ -43,18 +43,18 @@ export default class todoItem extends React.Component {
     render() {
         if (!this.state.renameMode) 
             return (
-                <div>
+                <tr><td>
                     <input type="checkbox" name="subscribe"/> {this.state.name}
                     <button onClick={this.rename}>rename</button>
-                </div>
+                    </td></tr>
             )
         else {
             return (
-                <div>
+                <tr><td>
                     <input type="checkbox" name="subscribe"/>
                     <input type="text" value={this.state.name} onChange={this.handleChange}/>
                     <button onClick={this.rename}>rename</button>
-                </div>
+                    </td></tr>
             )
         }
     }
