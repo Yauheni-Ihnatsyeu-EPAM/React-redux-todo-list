@@ -1,6 +1,11 @@
 import React from 'react';
 
-export default class todoItem extends React.Component {
+import {connect} from 'react-redux';
+
+import {bindActionCreators} from 'redux';
+import {toggleTodo} from '../../actions/actions';
+
+class TodoItem extends React.Component {
     constructor(props) {
         super(props);
 
@@ -23,10 +28,9 @@ export default class todoItem extends React.Component {
             renameMode: false
         };
     }
+
     rename(event) {
-        this.setState(prevState => ({
-            renameMode: !prevState.renameMode
-        }));
+        this.props
     }
 
     deleteThis() {
@@ -41,21 +45,38 @@ export default class todoItem extends React.Component {
     }
 
     render() {
+        console.log(this.props);
         if (!this.state.renameMode) 
             return (
-                <tr><td>
-                    <input type="checkbox" name="subscribe"/> {this.state.name}
-                    <button onClick={this.rename}>rename</button>
-                    </td></tr>
+                <tr>
+                    <td>
+                        <input
+                            type="checkbox"
+                            name="subscribe"
+                            value={this.props.done}
+                            onClick={() => this.props.onCheckboxClick(this.props.id)}/> {this.state.name}
+                        <button onClick={this.props.edit(true,this.props.id)}>edit</button>
+                    </td>
+                </tr>
             )
         else {
             return (
-                <tr><td>
-                    <input type="checkbox" name="subscribe"/>
-                    <input type="text" value={this.state.name} onChange={this.handleChange}/>
-                    <button onClick={this.rename}>rename</button>
-                    </td></tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="subscribe"/>
+                        <input type="text" value={this.state.name} onChange={this.handleChange}/>
+                        <button onClick={this.rename}>rename</button>
+                    </td>
+                </tr>
             )
         }
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({
+        onCheckboxClick: toggleTodo
+    }, dispatch);
+}
+
+export default connect(undefined, mapDispatchToProps)(TodoItem);

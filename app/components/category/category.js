@@ -1,9 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import CleverName from '../cleverName/cleverName';
-import {fetchTodos} from '../actions';
 
-export default class Category extends React.Component {
+import CleverName from '../cleverName/cleverName';
+
+import {connect} from 'react-redux';
+import {setCategoryFilter} from '../../actions/actions';
+import {bindActionCreators} from 'redux';
+
+class Category extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
@@ -19,14 +22,12 @@ export default class Category extends React.Component {
         this.handleChange = this
             .handleChange
             .bind(this);
-        this.fetchTodos = this
-            .fetchTodos
-            .bind(this);
 
         this.state = {
             name: props.name,
             renameMode: false,
-            choised: false
+            choised: props.selected,
+            id: props.id
         };
     }
     rename(event) {
@@ -46,17 +47,18 @@ export default class Category extends React.Component {
         this.setState({name: event.target.value});
     }
 
-    fetchTodos(event) {
-        dispatch(fetchTodos(this.props.id));
-    }
-
     render() {
         if (!this.state.renameMode) 
             return (
-                <tr>
+                <tr
+                    onClick={() => {
+                    this
+                        .props
+                        .onCategoryClick(this.props.id);
+                }}>
                     <td>
                         <input type="checkbox" name="subscribe"/>
-                        <CleverName name={this.state.name} choised={this.state.choised} onClick={this.fetchTodos}/>
+                        <CleverName name={this.state.name} selected={this.props.selected}/>
                         <button onClick={this.rename}>ren</button>
                         <button onClick={this.deleteThis}>del</button>
                         <button onClick={this.addSubCategory}>sub</button>
@@ -78,6 +80,13 @@ export default class Category extends React.Component {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({
+        onCategoryClick: setCategoryFilter
+    }, dispatch);
+}
+
+export default connect(undefined, mapDispatchToProps)(Category);
 // function NumberList(props) {     const numbers = props.numbers;     const
 // listItems = numbers.map((number) =>       <ListItem key={number.toString()}
 // value={number} />     );     return (       <ul> {listItems}  </ul> ); }

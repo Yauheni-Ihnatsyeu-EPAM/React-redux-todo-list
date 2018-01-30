@@ -5,43 +5,82 @@ import styled from 'styled-components'
 export default class TodoList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            categoriesList: this
-                .props
-                .categories
-                .map((item, id) => {
-                    return (<TodoItem
-                        key={id}
-                        name={item}
-                        id={id}
-                        onDelete={this
-                        .deleteRow
-                        .bind(this)}/>)
-                })
-        };
+        console.log(this.props);
+        this.state = {};
 
+        this.setEditState = this
+            .setEditState
+            .bind(this);
+        this.editTaskDescription = this
+            .editTaskDescription
+            .bind(this);
+        this.editNameDescription = this
+            .editNameDescription
+            .bind(this);
+        this.saveChanges = this
+            .saveChanges
+            .bind(this);
+        this.cancel = this
+            .cancel
+            .bind(this);
     }
 
-    deleteRow(index) {
-        var categoriesList = [...this.state.categoriesList];
+    setEditState(editingTodo, todoId) {
+        this.setState({editingTodo, todoId})
+    }
+    editTaskDescription() {
+        // this.setState({taskDescription: event.target.value});
+    }
+    editNameDescription() {
+        // this.setState({taskName: event.target.value});
+    }
+    saveChanges() {}
+    cancel() {
 
-        categoriesList.splice(index, 1);
-        this.setState({categoriesList});
+        //бля доделай эту шнягу
+        // this.setState();
     }
 
     render() {
-        return (
-            <Table>
-                <tbody>
-                {this.state.categoriesList}
-                </tbody>
-            </Table>
-        )
+        // if (this.props.todos.lenght === 0)     return (         <div></div>     );
+        if (this.state.editingTodo) {
+            return (
+                <div>
+                    <button>Save changes</button>
+                    <button>
+                        Cancel
+                    </button>
+                    <input type="checkbox" name="subscribe"/>
+                    <input type="text" value={this.state.name} onChange={this.handleChange}/>
+                    <input type="text" name="Decrition"/>
+                </div>
+            )
+        } else {
+            return (
+                <Table>
+                    <tbody>
+                        {this
+                            .props
+                            .todos
+                            .map(
+                            item =>< TodoItem key = {
+                                item.id
+                            }
+                            {
+                                ...item
+                            }
+                            edit = {
+                                this.setEditState
+                            } />)}
+                    </tbody>
+                </Table>
+            )
+        }
     }
 }
 
-
-const Table = styled.table `border: 1px solid black;
-width: 70%;
-display:inline-block;
- `;
+const Table = styled.table `
+border: 1px solid black;
+display: inline-block;
+width: 30%; 
+`;

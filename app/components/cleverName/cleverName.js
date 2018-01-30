@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import {fetchTodos} from '../../actions/actions';
 
-export default class CleverName extends React.Component {
+class CleverName extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
@@ -9,6 +11,8 @@ export default class CleverName extends React.Component {
             .handleChange
             .bind(this);
 
+           
+        
         this.state = {
             name: props.name,
             renameMode: false
@@ -18,9 +22,11 @@ export default class CleverName extends React.Component {
     handleChange(event) {
         this.setState({name: event.target.value});
     }
+    
 
     render() {
-        if (!this.props.choised) 
+        
+        if (!this.props.selected) 
             return (
                 <span>
                     {/* <input type="checkbox" name="subscribe"/> */}
@@ -37,6 +43,8 @@ export default class CleverName extends React.Component {
         }
     }
 }
+
+export default connect()(CleverName)
 
 // function NumberList(props) {     const numbers = props.numbers;     const
 // listItems = numbers.map((number) =>       <ListItem key={number.toString()}
