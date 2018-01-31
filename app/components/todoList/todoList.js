@@ -6,7 +6,9 @@ export default class TodoList extends React.Component {
     constructor(props) {
         super(props);
         console.log(this.props);
-        this.state = {};
+        this.state = {
+            todoDone:false
+        };
 
         this.setEditState = this
             .setEditState
@@ -20,13 +22,17 @@ export default class TodoList extends React.Component {
         this.saveChanges = this
             .saveChanges
             .bind(this);
+            // this.toggleDoneState = this
+            // .toggleDoneState
+            // .bind(this);
         this.cancel = this
             .cancel
             .bind(this);
     }
 
     setEditState(editingTodo, todoId) {
-        this.setState({editingTodo, todoId})
+        this.setState({editingTodo, todoId});
+        console.log(editingTodo);
     }
     editTaskDescription() {
         // this.setState({taskDescription: event.target.value});
@@ -34,30 +40,34 @@ export default class TodoList extends React.Component {
     editNameDescription() {
         // this.setState({taskName: event.target.value});
     }
-    saveChanges() {}
-    cancel() {
+    saveChanges() {
+        this.editingTodo(this.state.editingTodo.id,this.state.editingTodo.name, this.state.editingTodo.done, this.state.editingTodo.description);
+        his.setState({editingTodo:undefined});
+    }
 
+    
+    cancel() {
         //бля доделай эту шнягу
         // this.setState();
     }
 
     render() {
-        // if (this.props.todos.lenght === 0)     return (         <div></div>     );
+        if (this.props.todos.lenght === 0)     return (         <div></div>     );
         if (this.state.editingTodo) {
             return (
-                <div>
-                    <button>Save changes</button>
+                <div className={this.props.className}>
+                    <button onClick={this.saveChanges}>Save changes</button>
                     <button>
                         Cancel
                     </button>
-                    <input type="checkbox" name="subscribe"/>
-                    <input type="text" value={this.state.name} onChange={this.handleChange}/>
-                    <input type="text" name="Decrition"/>
+                    <input type="checkbox" value={this.state.editingTodo.done} name="subscribe" onClick={()=>this.todoDone}/>
+                    <input type="text" value={this.state.editingTodo.name} onChange={this.handleChange}/>
+                    <input type="text" value={this.state.editingTodo.description || ""} name="Decrition" onChange={this.handleChange}/>
                 </div>
             )
         } else {
             return (
-                <Table>
+                <Table className={this.props.className}>
                     <tbody>
                         {this
                             .props
@@ -80,7 +90,5 @@ export default class TodoList extends React.Component {
 }
 
 const Table = styled.table `
-border: 1px solid black;
-display: inline-block;
-width: 30%; 
+
 `;

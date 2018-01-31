@@ -2,8 +2,6 @@
 
 import React from 'react';
 
-import styled from 'styled-components'
-
 export default class AddItem extends React.Component {
     // getInitialState() {     return {value: 'Enter category to search'}; }
     constructor(props) {
@@ -22,17 +20,12 @@ export default class AddItem extends React.Component {
 
     render() {
         return (
-            <Div>
+            <div className={this.props.className}>
                 <input type="text" value={this.state.text} onChange={this.handleChange}/>
                 <button
                     onClick={() => this.props.actions.onAddButton(this.state.text, this.props.selectedCategory)}>Add</button>
-            </Div>
+            </div>
         )
     }
 }
-
-const Div = styled.div `
-display:inline; width:300px; color:black;
-margin:0 auto;
-`;
 

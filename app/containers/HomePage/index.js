@@ -18,7 +18,7 @@ import styled from 'styled-components'
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import SearchInput from '../../components/searchInput/searchInput';
+import SearchBar from './liveSearchBar';
 import LiveCategories from '../../components/categories/categories';
 import VisibleTodoList from './visibleTodoList';//перенести в другую папку
 import AddCategory from '../../components/addItem/addCategory';
@@ -31,20 +31,33 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
 
   render() {
     return (
-      <div>
-        {/* <SearchInput value='Enter search value'/> */}
-        {/* <Progress max="100" value="25"> */}
-    {/* Загружено на <span id="value">25</span>% */}
-  <Progress />
+      <StyledIndexPageDiv>
+        <SearchBar value='Enter search value'/>
+        <Progress max="100" value="25"/>
+            
+      
         
-      <AddCategory/><AddTodo/>
-        <LiveCategories/>
+
+        <AddCategory/>
+      <AddTodo/>
+
+      <LiveCategories/>
         
         <VisibleTodoList/>
-      </div>
+      </StyledIndexPageDiv>
     );
   }
 }
 
 // styled(LiveCategories)`width:30%;`;
-styled(VisibleTodoList)`width:70%;`;
+const StyledIndexPageDiv = styled.div`
+display:grid;
+grid-template-areas: 
+". . . search-bar"
+"progress-bar progress-bar progress-bar progress-bar"
+"add-category add-category add-todo add-todo"
+"categories categories todos todos";
+grid-template-rows: auto;
+grid-template-columns: auto;
+
+`;

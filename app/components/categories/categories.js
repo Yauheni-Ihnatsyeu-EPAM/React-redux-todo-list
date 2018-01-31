@@ -18,7 +18,7 @@ class Categories extends React.Component {
     render() {
         if (this.props.categories.length != 0) 
             return (
-                <Table>
+                <table className={this.props.className}>
                     <tbody>
                         {this
                             .props
@@ -31,7 +31,7 @@ class Categories extends React.Component {
                                 ...item
                             } />)}
                     </tbody>
-                </Table>
+                </table>
             )
         else 
             return (
@@ -57,13 +57,9 @@ function setSelectedCategory(categories, filters) {
 }
 
 const LiveCategories = connect(mapStateToProps)(Categories);
-export default LiveCategories;
+export default styled(LiveCategories)`grid-area: categories;`;
 
-const Table = styled.table `
-border: 1px solid black;
-display: inline-block;
-width: 30%; 
-`;
+
 
 // if (this.props.categories)     this.state = {         categoriesList: this
 // .props             .categories             .map((item, id) => {    return

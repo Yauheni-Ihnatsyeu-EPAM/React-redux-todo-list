@@ -1,7 +1,8 @@
 import {connect} from 'react-redux';
-import {toggleTodo, renameTodo} from '../../actions/actions';
+import {toggleTodo, renameTodo, editTodo} from '../../actions/actions';
 import TodoList from '../../components/todoList/todoList';
 import {bindActionCreators} from 'redux';
+import styled from 'styled-components';
 
 const getVisibleTodos = (todos, filter) => {
   if (todos.lenght === 0) 
@@ -28,10 +29,20 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     onTodoClick: toggleTodo,
-    onTodoRename: renameTodo
+    onTodoRename: renameTodo,
+    editTodo
   }, dispatch);
 }
 
 const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList)
 
-export default VisibleTodoList
+
+
+export default styled(VisibleTodoList)`
+grid-area: todos;
+border: 1px solid grey;
+border-radius: 4px;
+tr{
+  border: 1px solid grey;
+}
+`;

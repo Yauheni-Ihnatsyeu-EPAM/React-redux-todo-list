@@ -9,10 +9,27 @@ const mapDispatchToProps = dispatch => {
   return {text:"add category", actions:bindActionCreators({onAddButton:addCategory}, dispatch)};
 }
 
+
+
+
+const styledAddCategory = styled(addItem)`
+grid-area: add-category;
+width: auto;
+button
+{
+  border: 1px solid grey;
+  
+};
+input{
+  border: 1px solid grey;
+  
+}
+margin: 15px 30px;
+`;
+
 const AddCategory = connect(undefined,
   mapDispatchToProps
-)(addItem)
+)(styledAddCategory);
 
-styled(AddCategory)`display:inline; width:30%;`;
 
-export default AddCategory
+export default AddCategory;

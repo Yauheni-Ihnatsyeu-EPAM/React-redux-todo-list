@@ -1,5 +1,6 @@
 import {connect} from 'react-redux';
 import Progress from '../../components/progress/progress';
+import styled from 'styled-components';
 
 const getTodosPercent = (todos,filter) => {
   if (todos.lenght === 0) 
@@ -20,4 +21,8 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Progress)
+const connectedProgress = connect(mapStateToProps)(Progress);
+export default styled(connectedProgress)`
+grid-area: progress-bar;
+padding: 10px;
+`;

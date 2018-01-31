@@ -55,7 +55,10 @@ class TodoItem extends React.Component {
                             name="subscribe"
                             value={this.props.done}
                             onClick={() => this.props.onCheckboxClick(this.props.id)}/> {this.state.name}
-                        <button onClick={this.props.edit(true,this.props.id)}>edit</button>
+                        <button
+                            onClick={this
+                            .props
+                            .edit(...this.props, this.props.id)}>edit</button>
                     </td>
                 </tr>
             )

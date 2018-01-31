@@ -26,4 +26,16 @@ const AddTodo = connect(mapStateToProps,
 )(addItem)
 
 
-export default AddTodo
+export default styled(AddTodo)
+`grid-area: add-todo;
+width: auto;
+button
+{
+  border: 1px solid grey;
+  
+};
+input{
+  border: 1px solid grey;
+  
+}
+margin: 15px;`
