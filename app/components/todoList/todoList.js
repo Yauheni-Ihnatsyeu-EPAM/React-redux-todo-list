@@ -55,15 +55,7 @@ export default class TodoList extends React.Component {
         if (this.props.todos.lenght === 0)     return (         <div></div>     );
         if (this.state.editingTodo) {
             return (
-                <div className={this.props.className}>
-                    <button onClick={this.saveChanges}>Save changes</button>
-                    <button>
-                        Cancel
-                    </button>
-                    <input type="checkbox" value={this.state.editingTodo.done} name="subscribe" onClick={()=>this.todoDone}/>
-                    <input type="text" value={this.state.editingTodo.name} onChange={this.handleChange}/>
-                    <input type="text" value={this.state.editingTodo.description || ""} name="Decrition" onChange={this.handleChange}/>
-                </div>
+                
             )
         } else {
             return (

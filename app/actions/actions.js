@@ -45,10 +45,6 @@ export function addCategory(name) {
     return {type: ADD_CATEGORY, name}
 }
 
-export function selectCategory(categoryId) {
-    return {type: SELECT_CATEGORY, categoryId}
-}
-
 export function addNestedCategory(text) {
     return {type: ADD_NESTED_CATEGORY, text}
 }

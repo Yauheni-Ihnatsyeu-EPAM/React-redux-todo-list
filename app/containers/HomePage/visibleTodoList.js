@@ -36,7 +36,7 @@ const mapDispatchToProps = dispatch => {
 
 const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList)
 
-const Edit = ({className}) => (
+const EditPage = ({className}) => (
   <a className={className}>
     <div className={this.props.className}>
       <button onClick={this.saveChanges}>Save changes</button>
@@ -60,6 +60,12 @@ const Edit = ({className}) => (
     </div>
   </a>
 )
+
+const StyledEditPage = styled()`
+
+`;
+
+
 
 export default styled(VisibleTodoList)`
 grid-area: todos;
