@@ -9,23 +9,20 @@
  * the linting exception.
  */
 
-
-
 //TODO: add progress bar
 
 import React from 'react';
 import styled from 'styled-components'
 
-import { FormattedMessage } from 'react-intl';
+import {FormattedMessage} from 'react-intl';
 import messages from './messages';
 import SearchBar from './liveSearchBar';
 import LiveCategories from '../../components/categories/categories';
-import VisibleTodoList from './visibleTodoList';//перенести в другую папку
+import VisibleTodoList from './visibleTodoList'; //перенести в другую папку
 import AddCategory from '../../components/addItem/addCategory';
 import AddTodo from '../../components/addItem/addTodo';
 
 import Progress from './liveProgress';
-
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -34,15 +31,11 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
       <StyledIndexPageDiv>
         <SearchBar value='Enter search value'/>
         <Progress max="100" value="25"/>
-            
-      
-        
-
         <AddCategory/>
-      <AddTodo/>
+        <AddTodo/>
 
-      <LiveCategories/>
-        
+        <LiveCategories/>
+
         <VisibleTodoList/>
       </StyledIndexPageDiv>
     );
@@ -50,7 +43,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
 }
 
 // styled(LiveCategories)`width:30%;`;
-const StyledIndexPageDiv = styled.div`
+const StyledIndexPageDiv = styled.div `
 display:grid;
 grid-template-areas: 
 ". . . search-bar"

@@ -23,6 +23,7 @@ export default class SearchBar extends React.Component {
     }
 
     handleSearchStringChange(event) {
+        
         this.props.setNameFilter(event.target.value);
         this.setState({value: event.target.value});
     }
@@ -44,13 +45,13 @@ export default class SearchBar extends React.Component {
                         id="showDone"
                         name="subscribe"
                         onClick={this.handleDoneFilterChange}/>
-                    <label>Show done</label>
+                    <label>Show</label>
                 </div>
                 <label>
                     Search:
                     <input type="text" value={this.state.value} onChange={this.handleSearchStringChange}/>
                 </label>
-                <input type="submit" value="Submit"/>
+                <button type="submit">Submit</button>
             </form>
         )
     }
