@@ -3,8 +3,18 @@ import React from 'react';
 import CleverName from '../cleverName/cleverName';
 
 import {connect} from 'react-redux';
-import {setCategoryFilter} from '../../actions/actions';
+import {setCategoryFilter, addNestedCategory} from '../../actions/actions';
 import {bindActionCreators} from 'redux';
+
+import {ListItem} from 'material-ui/List';
+
+import FontIcon from 'material-ui/FontIcon';
+import IconButton from 'material-ui/IconButton';
+
+const style = {
+    heigth: 12,
+    width: 12
+};
 
 class Category extends React.Component {
     constructor(props) {
@@ -41,7 +51,9 @@ class Category extends React.Component {
             .props
             .onDelete(this.props.id);
     }
-    addSubCategory() {}
+    addSubCategory() {
+        this.props.addNestedCategory();
+    }
 
     handleChange(event) {
         this.setState({name: event.target.value});
@@ -50,31 +62,43 @@ class Category extends React.Component {
     render() {
         if (!this.state.renameMode) 
             return (
-                <tr
+                <ListItem
                     onClick={() => {
                     this
                         .props
                         .onCategoryClick(this.props.id);
                 }}>
-                    <td>
-                        <input type="checkbox" name="subscribe"/>
-                        <CleverName name={this.state.name} selected={this.props.selected}/>
-                        <button onClick={this.rename}>ren</button>
-                        <button onClick={this.deleteThis}>del</button>
-                        <button onClick={this.addSubCategory}>sub</button>
-                    </td>
-                </tr>
+
+                    <CleverName name={this.state.name} selected={this.props.selected}/>
+
+                    <IconButton tooltip="Edit name" onClick={this.rename}>
+                        <FontIcon className="material-icons">
+                            edit
+                        </FontIcon>
+                    </IconButton>
+                    <IconButton tooltip="Delete category" onClick={this.deleteThis}>
+                        <FontIcon className="material-icons">
+                            delete
+                        </FontIcon>
+                    </IconButton>
+                    <IconButton tooltip="Add sub category" onClick={this.addSubCategory}>
+                    <FontIcon className="material-icons">
+                            add
+                        </FontIcon>
+                    </IconButton>
+
+                </ListItem>
             )
         else {
             return (
-                <tr>
-                    <td>
-                        <input type="text" value={this.state.name} onChange={this.handleChange}/>
-                        <button onClick={this.rename}>ren</button>
-                        <button onClick={this.deleteThis}>del</button>
-                        <button onClick={this.addSubCategory}>sub</button>
-                    </td>
-                </tr>
+                <ListItem>
+
+                    <input type="text" value={this.state.name} onChange={this.handleChange}/>
+                    <button onClick={this.rename}>ren</button>
+                    <button onClick={this.deleteThis}>del</button>
+                    <button onClick={this.addSubCategory}>sub</button>
+
+                </ListItem>
             )
         }
     }
@@ -82,7 +106,8 @@ class Category extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        onCategoryClick: setCategoryFilter
+        onCategoryClick: setCategoryFilter,
+        addNestedCategory
     }, dispatch);
 }
 

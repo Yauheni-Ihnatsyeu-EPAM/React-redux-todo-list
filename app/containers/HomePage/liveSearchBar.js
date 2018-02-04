@@ -19,7 +19,5 @@ const connectedSearchBar = connect(null, mapDispatchToProps)(SearchBar)
 
 export default styled(connectedSearchBar)`
 grid-area: search-bar;
-margin: 25px 30px;
-display: flex;
-justify-content: space-between;
+
 `;

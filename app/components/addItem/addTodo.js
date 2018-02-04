@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import styled from 'styled-components'
 
 const mapDispatchToProps = dispatch => {
-  return {text:"add todos",  actions:bindActionCreators({onAddButton:addTodo}, dispatch)};
+  return {text:"Enter name of todo",  actions:bindActionCreators({onAddButton:addTodo}, dispatch)};
 }
 
 const mapStateToProps = state => {
@@ -38,4 +38,4 @@ input{
   border: 1px solid grey;
   
 }
-margin: 15px;`
+padding: 15px;`

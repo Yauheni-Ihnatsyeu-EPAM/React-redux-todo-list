@@ -1,7 +1,10 @@
 //TODO: add checkbox "show done" and button deleting all entered text
 
 import React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import Checkbox from 'material-ui/Checkbox';
 
 export default class SearchBar extends React.Component {
     // getInitialState() {     return {value: 'Enter category to search'}; }
@@ -23,13 +26,17 @@ export default class SearchBar extends React.Component {
     }
 
     handleSearchStringChange(event) {
-        
-        this.props.setNameFilter(event.target.value);
+
+        this
+            .props
+            .setNameFilter(event.target.value);
         this.setState({value: event.target.value});
     }
     handleDoneFilterChange(event) {
-        this.props.setDoneFilter(event.target.value);
-        
+        this
+            .props
+            .setDoneFilter(event.target.value);
+
     }
 
     handleSubmit(event) {
@@ -39,19 +46,11 @@ export default class SearchBar extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit} className={this.props.className}>
-                <div>
-                    <input
-                        type="checkbox"
-                        id="showDone"
-                        name="subscribe"
-                        onClick={this.handleDoneFilterChange}/>
-                    <label>Show</label>
-                </div>
-                <label>
-                    Search:
-                    <input type="text" value={this.state.value} onChange={this.handleSearchStringChange}/>
-                </label>
-                <button type="submit">Submit</button>
+                <Checkbox label="Show done" onCheck={this.handleDoneFilterChange}/>
+                <TextField
+                    defaultValue="AAAAAAAAAA"
+                    floatingLabelText={this.state.value}
+                    onChange={this.handleSearchStringChange}/>
             </form>
         )
     }

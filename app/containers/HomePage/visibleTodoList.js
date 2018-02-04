@@ -36,42 +36,15 @@ const mapDispatchToProps = dispatch => {
 
 const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList)
 
-const EditPage = ({className}) => (
-  <a className={className}>
-    <div className={this.props.className}>
-      <button onClick={this.saveChanges}>Save changes</button>
-      <button>
-        Cancel
-      </button>
-      <input
-        type="checkbox"
-        value={this.state.editingTodo.done}
-        name="subscribe"
-        onClick={() => this.todoDone}/>
-      <input
-        type="text"
-        value={this.state.editingTodo.name}
-        onChange={this.handleChange}/>
-      <input
-        type="text"
-        value={this.state.editingTodo.description || ""}
-        name="Decrition"
-        onChange={this.handleChange}/>
-    </div>
-  </a>
-)
 
-const StyledEditPage = styled()`
 
+
+const StyledEditPage = styled.div`
+border: 1px solid grey;
 `;
 
 
 
 export default styled(VisibleTodoList)`
 grid-area: todos;
-border: 1px solid grey;
-border-radius: 4px;
-tr{
-  border: 1px solid grey;
-}
 `;

@@ -45,8 +45,8 @@ export function addCategory(name) {
     return {type: ADD_CATEGORY, name}
 }
 
-export function addNestedCategory(text) {
-    return {type: ADD_NESTED_CATEGORY, text}
+export function addNestedCategory(text, parentId) {
+    return {type: ADD_NESTED_CATEGORY, text, parentId}
 }
 
 export function renameCategory(text) {

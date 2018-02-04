@@ -3,6 +3,7 @@ import Category from '../category/category';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
 import category from '../category/category';
+import {List} from 'material-ui/List';
 
 class Categories extends React.Component {
     constructor(props) {
@@ -18,20 +19,20 @@ class Categories extends React.Component {
     render() {
         if (this.props.categories.length != 0) 
             return (
-                <table className={this.props.className}>
-                    <tbody>
-                        {this
-                            .props
-                            .categories
-                            .map(
-                            item =>< Category key = {
-                                item.id
-                            }
-                            {
-                                ...item
-                            } />)}
-                    </tbody>
-                </table>
+                <List className={this.props.className}>
+
+                    {this
+                        .props
+                        .categories
+                        .map(
+                        item =>< Category key = {
+                            item.id
+                        }
+                        {
+                            ...item
+                        }/>)}
+
+                </List>
             )
         else 
             return (
@@ -58,8 +59,6 @@ function setSelectedCategory(categories, filters) {
 
 const LiveCategories = connect(mapStateToProps)(Categories);
 export default styled(LiveCategories)`grid-area: categories;`;
-
-
 
 // if (this.props.categories)     this.state = {         categoriesList: this
 // .props             .categories             .map((item, id) => {    return

@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import styled from 'styled-components'
 
 const mapDispatchToProps = dispatch => {
-  return {text:"add category", actions:bindActionCreators({onAddButton:addCategory}, dispatch)};
+  return {text:"Enter name of category", actions:bindActionCreators({onAddButton:addCategory}, dispatch)};
 }
 
 
@@ -15,16 +15,16 @@ const mapDispatchToProps = dispatch => {
 const styledAddCategory = styled(addItem)`
 grid-area: add-category;
 width: auto;
-button
+RaisedButton
 {
-  border: 1px solid grey;
+  padding: 0px;
   
 };
-input{
+TextField{
   border: 1px solid grey;
   
 }
-margin: 15px 30px;
+padding: 15px;
 `;
 
 const AddCategory = connect(undefined,

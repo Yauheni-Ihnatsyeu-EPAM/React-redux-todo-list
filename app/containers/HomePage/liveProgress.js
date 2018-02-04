@@ -22,7 +22,9 @@ const mapStateToProps = state => {
 }
 
 const connectedProgress = connect(mapStateToProps)(Progress);
+
 export default styled(connectedProgress)`
 grid-area: progress-bar;
-padding: 10px;
+background-color: red;
+margin: 30px;
 `;

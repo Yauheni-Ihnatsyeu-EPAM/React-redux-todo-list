@@ -1,6 +1,8 @@
-import React from 'react'
-import TodoItem from '../todoItem/todoItem'
-import styled from 'styled-components'
+import React from 'react';
+import TodoItem from '../todoItem/todoItem';
+import styled from 'styled-components';
+
+import {List, ListItem} from 'material-ui/List';
 
 export default class TodoList extends React.Component {
     constructor(props) {
@@ -55,12 +57,12 @@ export default class TodoList extends React.Component {
         if (this.props.todos.lenght === 0)     return (         <div></div>     );
         if (this.state.editingTodo) {
             return (
-                
+                <div></div> 
             )
         } else {
             return (
-                <Table className={this.props.className}>
-                    <tbody>
+                <List className={this.props.className}>
+                    
                         {this
                             .props
                             .todos
@@ -74,13 +76,9 @@ export default class TodoList extends React.Component {
                             edit = {
                                 this.setEditState
                             } />)}
-                    </tbody>
-                </Table>
+                    
+                </List>
             )
         }
     }
 }
-
-const Table = styled.table `
-
-`;
