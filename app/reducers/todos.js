@@ -25,8 +25,10 @@ function todos(state = [], action) {
             });
         case EDIT_TODO:
             return state.map((todo) => {
-                if (todo.id === action.todoId) {
-                    return Object.assign({}, todo, {name: action.name, description: action.description, text: action.text, done:action.done});
+                debugger;
+                if (todo.id === action.newTodo.id) {
+                    console.log(action.newTodo);
+                    return action.newTodo;
                 }
                 return todo;
             });

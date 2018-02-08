@@ -1,4 +1,4 @@
-import {ADD_CATEGORY, ADD_NESTED_CATEGORY} from '../actions/actions'
+import {ADD_CATEGORY, ADD_NESTED_CATEGORY, RENAME_CATEGORY, DELETE_CATEGORY, FORCE_RELOAD} from '../actions/actions'
 
 var categoriesId = 0;
 
@@ -10,40 +10,64 @@ function categories(state = [], action) {
           {
             name: action.name,
             id: categoriesId++
+
           },
           ...state
         ]
       }
     case ADD_NESTED_CATEGORY:
       {
-        debugger;
         state.map(val => {
           if (val.id == action.parentId) {
             if (val.nestedCategories == undefined) 
               val.nestedCategories = [];
             val
               .nestedCategories
-              .push({name: action.name, id: categoriesId});
+              .push({
+                name: action.name,
+                id: categoriesId++
+              });
             return val;
           }
         });
-        return state;
+        
+        return [...state];
       }
-      case ADD_NESTED_CATEGORY:
+    case RENAME_CATEGORY:
       {
-        debugger;
-        state.map(val => {
-          if (val.id == action.parentId) {
-            if (val.nestedCategories == undefined) 
-              val.nestedCategories = [];
-            val
-              .nestedCategories
-              .push({name: action.name, id: categoriesId});
-            return val;
-          }
+        
+        let arr = state.map(item => {
+          if (item.id == action.id) 
+            item.name = action.name
+          if (item.nestedCategories) 
+            item.nestedCategories = item.nestedCategories.map(nested => {
+              if (nested.id === action.id) 
+              nested.name = action.name;
+              return nested
+            })
+            return item;
+        })
+        return arr;
+      }
+    case DELETE_CATEGORY:
+      {
+        
+        let arr = state.filter(item => {
+          if (item.id == action.deleteID) 
+            return false;
+          if (item.nestedCategories) 
+            item.nestedCategories = item.nestedCategories.filter(nested => nested.id === action.deleteID
+              ? false
+              : true);
+          return true;
         });
+        return arr;
+      }
+      case FORCE_RELOAD:
+      {
         return state;
       }
+
     default:
       return state;
   }

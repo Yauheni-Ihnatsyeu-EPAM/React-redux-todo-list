@@ -33,9 +33,10 @@ export default class SearchBar extends React.Component {
         this.setState({value: event.target.value});
     }
     handleDoneFilterChange(event) {
+        
         this
             .props
-            .setDoneFilter(event.target.value);
+            .setDoneFilter(!this.props.showDone);
 
     }
 
@@ -48,7 +49,7 @@ export default class SearchBar extends React.Component {
             <form onSubmit={this.handleSubmit} className={this.props.className}>
                 <Checkbox label="Show done" onCheck={this.handleDoneFilterChange}/>
                 <TextField
-                    defaultValue="AAAAAAAAAA"
+                    defaultValue=""
                     floatingLabelText={this.state.value}
                     onChange={this.handleSearchStringChange}/>
             </form>

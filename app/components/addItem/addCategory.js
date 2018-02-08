@@ -18,11 +18,9 @@ width: auto;
 RaisedButton
 {
   padding: 0px;
-  
 };
 TextField{
   border: 1px solid grey;
-  
 }
 padding: 15px;
 `;

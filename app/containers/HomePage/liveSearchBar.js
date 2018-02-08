@@ -13,7 +13,14 @@ const mapDispatchToProps = dispatch => {
   }, dispatch);
 }
 
-const connectedSearchBar = connect(null, mapDispatchToProps)(SearchBar)
+const mapStateToProps = state => {
+  console.log(state.get('filters'));
+  return {
+    showDone: state.get('filters').done 
+  }
+}
+
+const connectedSearchBar = connect(mapStateToProps, mapDispatchToProps)(SearchBar)
 
 
 

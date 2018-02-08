@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {bindActionCreators} from 'redux';
-import {toggleTodo} from '../../actions/actions';
+import {toggleTodo, setEditTodoFilter} from '../../actions/actions';
 
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
@@ -14,9 +14,6 @@ class TodoItem extends React.Component {
     constructor(props) {
         super(props);
 
-        this.rename = this
-            .rename
-            .bind(this);
         this.deleteThis = this
             .deleteThis
             .bind(this);
@@ -29,12 +26,9 @@ class TodoItem extends React.Component {
             .bind(this);
 
         this.state = {
-            name: props.name,
-            renameMode: false
+            todo: this.props.todo
         };
     }
-
-    rename(event) {}
 
     deleteThis() {
         this
@@ -48,44 +42,30 @@ class TodoItem extends React.Component {
     }
 
     render() {
-        console.log(this.props);
-        if (!this.state.renameMode) {
-            return (
-                <ListItem primaryText={this.state.name}>
-                    <Checkbox
-                        checked={this.props.done}
-                        onCheck={() => this.props.onCheckboxClick(this.props.id)}/>
+        return (
+            <ListItem primaryText={this.props.todo.name}>
+                <Checkbox
+                    checked={this.props.todo.done}
+                    onCheck={() => this.props.onCheckboxClick(this.props.todo.id)}/>
 
-                    <IconButton
-                        tooltip="Font Icon"
-                        onClick={this
-                        .props
-                        .edit(...this.props, this.props.id)}>
-                        <FontIcon className="material-icons"> edit </FontIcon>
-
-                    </IconButton>
-                </ListItem>
-            )
-        } else {
-            return (
-                <ListItem>
-
-                    <input type="checkbox" name="subscribe"/>
-                    <input type="text" value={this.state.name} onChange={this.handleChange}/>
-                    < button onClick={this.rename}>
-                        rename
-                    </button>
-                </ListItem>
-            )
-        }
+                <IconButton
+                    tooltip="Edit todo"
+                    onClick={() => this.props.setEditTodoFilter(this.props.todo)}>
+                    <FontIcon className="material-icons">
+                        edit
+                    </FontIcon>
+                </IconButton>
+            </ListItem>
+        )
     }
 };
 
 // const StyledListItem = styled(ListItem)`
-
-// `;
-const mapDispatchToProps = dispatch => {return bindActionCreators({
-    onCheckboxClick: toggleTodo
-}, dispatch)}; 
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({
+        onCheckboxClick: toggleTodo,
+        setEditTodoFilter
+    }, dispatch)
+};
 
 export default connect(undefined, mapDispatchToProps)(TodoItem);

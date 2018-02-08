@@ -8,7 +8,8 @@ const getVisibleTodos = (todos, filter) => {
   if (todos.lenght === 0) 
     return [];
   if (filter.category != undefined) {
-    todos = todos.filter(todo => todo.categoryId === filter.category)
+    let ids = getArrayOfIds(filter.category);
+    todos = todos.filter(todo => ids.filter(id => todo.categoryId == id).length)
   }
 
   if (filter.done) 
@@ -20,30 +21,37 @@ const getVisibleTodos = (todos, filter) => {
   return todos;
 }
 
+const getArrayOfIds = function (category) {
+  var idsArr = [];
+  idsArr.push(category.id);
+  if (category.nestedCategories) 
+    category.nestedCategories.forEach(element => {
+      idsArr.push(element.id);
+    });
+  return idsArr;
+}
+
 const mapStateToProps = state => {
   return {
-    todos: getVisibleTodos(state.get('todos'), state.get('filters'))
+    todos: getVisibleTodos(state.get('todos'), state.get('filters')),
+    editingTodo: state
+      .get('filters')
+      .editingTodo
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     onTodoClick: toggleTodo,
-    onTodoRename: renameTodo,
-    editTodo
+    onTodoRename: renameTodo
   }, dispatch);
 }
 
 const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList)
 
-
-
-
-const StyledEditPage = styled.div`
+const StyledEditPage = styled.div `
 border: 1px solid grey;
 `;
-
-
 
 export default styled(VisibleTodoList)`
 grid-area: todos;

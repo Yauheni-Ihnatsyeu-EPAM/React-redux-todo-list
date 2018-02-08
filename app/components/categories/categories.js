@@ -10,12 +10,7 @@ class Categories extends React.Component {
         super(props);
     }
 
-    deleteRow(index) {
-        var categoriesList = [...this.state.categoriesList];
-        categoriesList.splice(index, 1);
-        this.setState({categoriesList});
-    }
-
+    
     render() {
         if (this.props.categories.length != 0) 
             return (
@@ -31,9 +26,8 @@ class Categories extends React.Component {
                         {
                             ...item
                         }/>)}
-
                 </List>
-            )
+            )   
         else 
             return (
                 <div></div>
@@ -42,8 +36,11 @@ class Categories extends React.Component {
     }
 
 const mapStateToProps = state => {
+
+    
+    
     return {
-        categories: setSelectedCategory(state.get('categories'), state.get('filters'))
+        categories: state.get('categories')
     };
 };
 

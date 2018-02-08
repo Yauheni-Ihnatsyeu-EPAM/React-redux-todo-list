@@ -10,7 +10,7 @@ const getTodosPercent = (todos,filter) => {
     todos = todos.filter(todo => todo.done)
 
     let percent = todos.length / maxTodos * 100;
-    console.log(percent)
+    
 
   return percent;
 }

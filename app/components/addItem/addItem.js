@@ -31,7 +31,7 @@ export default class AddItem extends React.Component {
                     />
                 {/* <button
                     onClick={() => this.props.actions.onAddButton(this.state.text, this.props.selectedCategory)}>Add</button> */}
-                     <FlatButton label="Add" onClick={() => this.props.actions.onAddButton(this.state.text, this.props.selectedCategory)}/>
+                     <FlatButton label="Add" onClick={() => this.props.actions.onAddButton(this.state.text, this.props.selectedCategory&&this.props.selectedCategory.id)}/>
             </div>
         )
     }
