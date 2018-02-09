@@ -61,8 +61,6 @@ export function forceReload(val) {
     return {type: FORCE_RELOAD, val}
 }
 
-
-
 export function renameNestedCategory(text) {
     return {type: RENAME_NESTED_CATEGORY, text}
 }

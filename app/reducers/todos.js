@@ -1,4 +1,5 @@
-import {ADD_TODO, EDIT_TODO, TOGGLE_TODO} from '../actions/actions'
+import {ADD_TODO, EDIT_TODO, TOGGLE_TODO, DELETE_CATEGORY} from '../actions/actions';
+import undoable, {distinctState} from 'redux-undo';
 
 var todoID = 0;
 
@@ -23,6 +24,13 @@ function todos(state = [], action) {
                 }
                 return todo;
             });
+        case DELETE_CATEGORY:
+            return state.filter((todo) => {
+                if (todo.categoryId == action.deleteID) {
+                    return false;
+                }
+                return true;
+            });
         case EDIT_TODO:
             return state.map((todo) => {
                 debugger;
@@ -37,5 +45,6 @@ function todos(state = [], action) {
     }
 }
 
+const undoableTodos = undoable(todos);
 
-export default todos;
+export default undoableTodos;

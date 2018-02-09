@@ -9,10 +9,8 @@ class Categories extends React.Component {
     constructor(props) {
         super(props);
     }
-
-    
     render() {
-        if (this.props.categories.length != 0) 
+        if (this.props.categories) 
             return (
                 <List className={this.props.className}>
 
@@ -40,7 +38,7 @@ const mapStateToProps = state => {
     
     
     return {
-        categories: state.get('categories')
+        categories: state.get('categories').present
     };
 };
 

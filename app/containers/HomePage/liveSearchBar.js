@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   console.log(state.get('filters'));
   return {
-    showDone: state.get('filters').done 
+    showDone: state.get('filters') && state.get('filters').done
   }
 }
 

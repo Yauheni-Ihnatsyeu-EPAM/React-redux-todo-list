@@ -3,21 +3,20 @@ import Progress from '../../components/progress/progress';
 import styled from 'styled-components';
 
 const getTodosPercent = (todos,filter) => {
-  if (todos.lenght === 0) 
-    return 100;
+  if (todos.lenght === 0 || !todos || !filter) 
+    return 0;
     let maxTodos = todos.length;
-    todos = todos.filter(todo => todo.categoryId === filter.category)
+    todos = todos.filter(todo => todo.categoryId === filter.category.id)
     todos = todos.filter(todo => todo.done)
 
     let percent = todos.length / maxTodos * 100;
     
-
   return percent;
 }
 
 const mapStateToProps = state => {
   return {
-    percent: getTodosPercent(state.get('todos'), state.get('filters'))
+    percent: getTodosPercent(state.get('todos').present, state.get('filters'))
   }
 }
 

@@ -11,7 +11,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    selectedCategory: state.get('filters').category
+    selectedCategory: state.get('filters') && state.get('filters').category
   }
 }
 //напоминание о том что могло бы быть если бы выбранная категория не была бы перенесена в фильтры

@@ -1,6 +1,6 @@
-import {SET_NAME_FILTER, SET_DONE_FILTER, SET_CATEGORY_FILTER, SET_EDIT_TODO_FILTER} from '../actions/actions'
+import {SET_NAME_FILTER, SET_DONE_FILTER, SET_CATEGORY_FILTER, SET_EDIT_TODO_FILTER} from '../actions/actions';
 
-function visibilityFilters(state = {}, action) {
+function filters(state = {}, action) {
   switch (action.type) {
     case SET_NAME_FILTER:
       return Object.assign({}, state, {string: action.string});
@@ -12,8 +12,8 @@ function visibilityFilters(state = {}, action) {
     debugger;
       return Object.assign({}, state, {editingTodo: action.todo});
     default:
-      return state;
+      return  state;
   }
 }
 
-export default visibilityFilters;
+export default filters;

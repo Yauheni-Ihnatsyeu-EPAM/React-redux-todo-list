@@ -34,6 +34,7 @@ class CleverName extends React.Component {
                 </span>
             )
         else {
+            
             return (
                 <b>
                     {/* <input type="checkbox" name="subscribe"/> */}

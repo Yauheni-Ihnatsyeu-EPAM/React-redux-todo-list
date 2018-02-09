@@ -1,4 +1,5 @@
-import {ADD_CATEGORY, ADD_NESTED_CATEGORY, RENAME_CATEGORY, DELETE_CATEGORY, FORCE_RELOAD} from '../actions/actions'
+import {ADD_CATEGORY, ADD_NESTED_CATEGORY, RENAME_CATEGORY, DELETE_CATEGORY, FORCE_RELOAD} from '../actions/actions';
+import undoable, {distinctState} from 'redux-undo';
 
 var categoriesId = 0;
 
@@ -73,4 +74,6 @@ function categories(state = [], action) {
   }
 }
 
-export default categories;
+
+const undoableCategories = undoable(categories);
+export default undoableCategories;

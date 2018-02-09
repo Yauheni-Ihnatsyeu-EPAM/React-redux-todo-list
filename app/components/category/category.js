@@ -155,8 +155,7 @@ class Category extends React.Component {
                             .renameCategory(this.props.id, this.state.name);
                         this.toggleRenameMode();
                     }}/>
-                </ListItem>) } else {
-                    return (
+                </ListItem>) } else {return (
                     <ListItem
                         onClick={this.chooseCategory}
                         initiallyOpen={true}
@@ -211,15 +210,15 @@ class Category extends React.Component {
                 }, dispatch);}
 
                 const mapStateToProps = state => {return {
-                    choisedCategoryID: state
-                        .get('filters')
-                        .category
+                    choisedCategoryID: state.get('filters').category
                         ? state
                             .get('filters')
                             .category
                             .id
                         : false,
                     editingTodo: state
+                        .get('filters')
+                         && state
                         .get('filters')
                         .editingTodo
                 }

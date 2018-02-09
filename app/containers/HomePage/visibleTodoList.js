@@ -5,8 +5,9 @@ import {bindActionCreators} from 'redux';
 import styled from 'styled-components';
 
 const getVisibleTodos = (todos, filter) => {
-  if (todos.lenght === 0) 
+  if (todos.lenght === 0 || !filter) 
     return [];
+  
   if (filter.category != undefined) {
     let ids = getArrayOfIds(filter.category);
     todos = todos.filter(todo => ids.filter(id => todo.categoryId == id).length)
@@ -33,9 +34,12 @@ const getArrayOfIds = function (category) {
 
 const mapStateToProps = state => {
   return {
-    todos: getVisibleTodos(state.get('todos'), state.get('filters')),
+    todos: getVisibleTodos(state.get('todos').present, state.get('filters')),
     editingTodo: state
       .get('filters')
+      .present && state
+      .get('filters')
+      .present
       .editingTodo
   }
 }
